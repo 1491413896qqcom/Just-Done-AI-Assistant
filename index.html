@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JustDone - AI Writing Tools</title>
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="https://api.dicebear.com/7.x/initials/svg?seed=JD&backgroundColor=000000" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              primary: '#254699', 
+              secondary: '#3B71F7', 
+              teal: '#00B39B', 
+            },
+            backgroundImage: {
+              'brand-gradient': 'linear-gradient(90deg, #00B39B 0%, #3B71F7 100%)',
+              'success-gradient': 'linear-gradient(90deg, #2ABF2F 0%, #66CE6A 100%)',
+            },
+            boxShadow: {
+              'card': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+              'card-hover': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      body {
+        background-color: #FFFFFF;
+        color: #1a1a1a;
+        -webkit-font-smoothing: antialiased;
+      }
+      .glass-nav {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .spacex-button {
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "express": "https://aistudiocdn.com/express@^5.2.1",
+        "crypto": "https://aistudiocdn.com/crypto@^1.0.1",
+        "cookie-parser": "https://aistudiocdn.com/cookie-parser@^1.4.7",
+        "node-fetch": "https://aistudiocdn.com/node-fetch@^3.3.2",
+        "jsonwebtoken": "https://aistudiocdn.com/jsonwebtoken@^9.0.3",
+        "querystring": "https://aistudiocdn.com/querystring@^0.2.1"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+        });
+      }
+    </script>
+  </body>
+</html>
