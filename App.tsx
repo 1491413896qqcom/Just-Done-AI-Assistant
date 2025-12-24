@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import ToolsGrid from './components/ToolsGrid';
@@ -15,10 +15,17 @@ const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('HOME');
   const [activeTool, setActiveTool] = useState<ToolId | null>(null);
   
-  // Auth & Settings State
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
+
+  useEffect(() => {
+    // Check for API key and prompt if missing
+    const key = localStorage.getItem('JUSTDONE_API_KEY');
+    if (!key) {
+      setTimeout(() => setIsSettingsModalOpen(true), 1000);
+    }
+  }, []);
 
   const handleToolSelect = (id: ToolId) => {
     setActiveTool(id);
@@ -44,7 +51,6 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen font-sans bg-white selection:bg-secondary selection:text-white">
-      {/* Modals */}
       <AuthModal 
         isOpen={isAuthModalOpen} 
         initialMode={authMode} 
@@ -79,7 +85,6 @@ const App: React.FC = () => {
           />
           <ToolsGrid onSelectTool={handleToolSelect} />
           
-          {/* CTA Banner */}
           <section className="py-20 px-4">
             <div className="max-w-5xl mx-auto rounded-3xl bg-brand-gradient p-12 md:p-16 text-center text-white shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
