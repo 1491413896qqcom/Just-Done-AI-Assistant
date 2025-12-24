@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ onNavClick, onLoginClick, onSignupClick
   return (
     <header 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'glass-nav border-b border-gray-100 shadow-sm py-3' : 'bg-white py-5'
+        isScrolled ? 'glass-nav border-b border-gray-100 shadow-sm py-3' : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -35,30 +35,22 @@ const Header: React.FC<HeaderProps> = ({ onNavClick, onLoginClick, onSignupClick
           <div className="w-8 h-8 rounded-lg bg-brand-gradient flex items-center justify-center text-white font-bold text-lg">
             J
           </div>
-          <span className="text-xl font-bold text-gray-900 tracking-tight">JustDone</span>
+          <span className={`text-xl font-bold tracking-tight ${isScrolled ? 'text-gray-900' : 'text-gray-900'}`}>JustDone</span>
         </div>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
-          <div className="relative group cursor-pointer flex items-center gap-1 text-gray-600 hover:text-primary font-medium transition-colors">
-            AI Tools
-            <ChevronDown size={14} />
-            <div className="absolute top-full left-0 mt-2 w-48 bg-white rounded-xl shadow-card-hover border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0 p-2">
-              <span className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg cursor-pointer" onClick={() => onNavClick('home')}>AI Humanizer</span>
-              <span className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg cursor-pointer" onClick={() => onNavClick('home')}>AI Detector</span>
-              <span className="block px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg cursor-pointer" onClick={() => onNavClick('home')}>Plagiarism Checker</span>
-            </div>
-          </div>
-          <button onClick={() => onNavClick('pricing')} className="text-gray-600 hover:text-primary font-medium transition-colors">Pricing</button>
-          <button onClick={() => onNavClick('home')} className="text-gray-600 hover:text-primary font-medium transition-colors">AI Humanizer</button>
+          <button onClick={() => onNavClick('home')} className="text-gray-600 hover:text-primary font-medium transition-colors">AI 工具</button>
+          <button onClick={() => onNavClick('pricing')} className="text-gray-600 hover:text-primary font-medium transition-colors">价格</button>
+          <button onClick={() => onNavClick('home')} className="text-gray-600 hover:text-primary font-medium transition-colors">关于我们</button>
         </nav>
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-4">
           <button 
             onClick={onSettingsClick}
-            className="p-2 text-gray-400 hover:text-primary transition-all rounded-full hover:bg-gray-50"
-            title="Settings"
+            className="p-2 text-gray-400 hover:text-primary transition-all rounded-full hover:bg-gray-100"
+            title="API 设置"
           >
             <Settings size={20} strokeWidth={1.5} />
           </button>
@@ -66,16 +58,10 @@ const Header: React.FC<HeaderProps> = ({ onNavClick, onLoginClick, onSignupClick
             onClick={onLoginClick}
             className="text-gray-600 hover:text-primary font-semibold text-sm px-3 py-2 rounded-lg hover:bg-gray-50 transition-all"
           >
-            Log In
-          </button>
-          <button 
-            onClick={onSignupClick}
-            className="text-gray-600 hover:text-primary font-semibold text-sm px-3 py-2 rounded-lg hover:bg-gray-50 transition-all"
-          >
-            Sign Up
+            登录
           </button>
           <button onClick={() => onNavClick('home')} className="bg-brand-gradient text-white px-6 py-2.5 rounded-full font-semibold text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-            Try JustDone
+            免费试用
           </button>
         </div>
 
@@ -91,12 +77,12 @@ const Header: React.FC<HeaderProps> = ({ onNavClick, onLoginClick, onSignupClick
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 shadow-xl py-4 px-4 flex flex-col gap-4">
-          <span onClick={() => {onNavClick('home'); setMobileMenuOpen(false)}} className="text-gray-600 font-medium py-2 border-b border-gray-50">AI Tools</span>
-          <span onClick={() => {onNavClick('pricing'); setMobileMenuOpen(false)}} className="text-gray-600 font-medium">Pricing</span>
+          <span onClick={() => {onNavClick('home'); setMobileMenuOpen(false)}} className="text-gray-600 font-medium py-2 border-b border-gray-50">AI 工具</span>
+          <span onClick={() => {onNavClick('pricing'); setMobileMenuOpen(false)}} className="text-gray-600 font-medium">价格</span>
           <div className="flex flex-col gap-3 mt-2">
-             <button onClick={() => {onSettingsClick(); setMobileMenuOpen(false)}} className="w-full border border-gray-200 text-gray-600 py-2.5 rounded-full font-semibold">Settings</button>
-             <button onClick={() => {onLoginClick(); setMobileMenuOpen(false)}} className="w-full border border-gray-200 text-gray-600 py-2.5 rounded-full font-semibold hover:bg-gray-50">Log In</button>
-             <button onClick={() => {onSignupClick(); setMobileMenuOpen(false)}} className="w-full bg-primary text-white py-2.5 rounded-full font-semibold shadow-lg">Sign Up Free</button>
+             <button onClick={() => {onSettingsClick(); setMobileMenuOpen(false)}} className="w-full border border-gray-200 text-gray-600 py-2.5 rounded-full font-semibold">API 设置</button>
+             <button onClick={() => {onLoginClick(); setMobileMenuOpen(false)}} className="w-full border border-gray-200 text-gray-600 py-2.5 rounded-full font-semibold hover:bg-gray-50">登录</button>
+             <button onClick={() => {onNavClick('home'); setMobileMenuOpen(false)}} className="w-full bg-primary text-white py-2.5 rounded-full font-semibold shadow-lg">免费注册</button>
           </div>
         </div>
       )}

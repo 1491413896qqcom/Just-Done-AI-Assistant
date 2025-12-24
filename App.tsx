@@ -20,10 +20,12 @@ const App: React.FC = () => {
   const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
 
   useEffect(() => {
-    // Check for API key and prompt if missing
+    // 检查本地存储中是否存在 API Key
     const key = localStorage.getItem('JUSTDONE_API_KEY');
     if (!key) {
-      setTimeout(() => setIsSettingsModalOpen(true), 1000);
+      // 如果没有密钥，延迟 1.5 秒后自动打开设置弹窗提示用户输入
+      const timer = setTimeout(() => setIsSettingsModalOpen(true), 1500);
+      return () => clearTimeout(timer);
     }
   }, []);
 
@@ -90,13 +92,13 @@ const App: React.FC = () => {
               <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
               <div className="relative z-10 space-y-8">
                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-                  Try the full suite of AI tools right now.
+                  体验全能 AI 工具集，立即开始。
                 </h2>
                 <button 
                   onClick={() => handleToolSelect(ToolId.HUMANIZER)}
                   className="px-10 py-4 bg-white text-secondary rounded-full font-bold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
                 >
-                  Try JustDone
+                  立即尝试 JustDone
                 </button>
               </div>
             </div>

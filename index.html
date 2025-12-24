@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JustDone - AI Writing Tools</title>
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#3B71F7" />
     <link rel="manifest" href="manifest.json" />
-    <link rel="apple-touch-icon" href="https://api.dicebear.com/7.x/initials/svg?seed=JD&backgroundColor=000000" />
+    <link rel="apple-touch-icon" href="https://api.dicebear.com/7.x/initials/svg?seed=JD&backgroundColor=3B71F7" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
@@ -35,7 +35,7 @@
     </script>
     <style>
       body {
-        background-color: #FFFFFF;
+        background-color: #F9FAFB;
         color: #1a1a1a;
         -webkit-font-smoothing: antialiased;
       }
@@ -44,37 +44,42 @@
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
       }
-      .spacex-button {
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
       }
     </style>
     <script type="importmap">
-    {
-      "imports": {
-        "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0",
-        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-        "react/": "https://aistudiocdn.com/react@^19.2.0/",
-        "react": "https://aistudiocdn.com/react@^19.2.0",
-        "express": "https://aistudiocdn.com/express@^5.2.1",
-        "crypto": "https://aistudiocdn.com/crypto@^1.0.1",
-        "cookie-parser": "https://aistudiocdn.com/cookie-parser@^1.4.7",
-        "node-fetch": "https://aistudiocdn.com/node-fetch@^3.3.2",
-        "jsonwebtoken": "https://aistudiocdn.com/jsonwebtoken@^9.0.3",
-        "querystring": "https://aistudiocdn.com/querystring@^0.2.1"
-      }
-    }
-    </script>
+{
+  "imports": {
+    "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "express": "https://aistudiocdn.com/express@^5.2.1",
+    "crypto": "https://aistudiocdn.com/crypto@^1.0.1",
+    "cookie-parser": "https://aistudiocdn.com/cookie-parser@^1.4.7",
+    "node-fetch": "https://aistudiocdn.com/node-fetch@^3.3.2",
+    "jsonwebtoken": "https://aistudiocdn.com/jsonwebtoken@^9.0.3",
+    "querystring": "https://aistudiocdn.com/querystring@^0.2.1",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
   </head>
   <body>
     <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+          navigator.serviceWorker.register('./sw.js').catch(err => console.log('SW registration failed:', err));
         });
       }
     </script>
